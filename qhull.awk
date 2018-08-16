@@ -26,6 +26,17 @@ function isLeft(P0x,P0y, P1x,P1y, P2x,P2y){
     return (P1x - P0x)*(P2y - P0y) - (P2x - P0x)*(P1y - P0y);
 }
 
+function ajoin(array,sep) {
+    r = "";
+    n = 1;
+    while (n in array) {
+        if (n > 1) r = r sep;
+        r = r array[n];
+        n++;
+    }
+    return r;
+}
+
 # Input: Array of points P
 #        Indicies of a base line (P[a], P[b])
 #
@@ -76,7 +87,7 @@ function cHull_r(P,ileft,iright,   l,r,imax,ileftH1,ileftH2,irightH1,
         return;
     }
 
-    # recusion
+    # recursion
     split(P[ileft],l,/,/);
     split(P[iright],r,/,/);
     
@@ -127,6 +138,7 @@ function cHull(P,               maxX, minX, iright, ileft,H1,H2,
     size = length(P);
 
     # trivial case
+
     if (size <= 2) return ajoin(P," ");
 
     # Find the extreme left and right points (minX, maxX)
@@ -231,9 +243,6 @@ function circular_sort(P,H,   atans,x0,y0,Pi,ind,n,i,j){
     H[n+1] = H[1];
 
     return n+1;
-}
-function Log(s){
-    print s;
 }
 
 BEGIN {
